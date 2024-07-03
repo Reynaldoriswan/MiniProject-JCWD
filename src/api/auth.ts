@@ -4,7 +4,7 @@ import axios from "axios"
 import { redirect } from 'next/navigation'
 
 export async function loginProcess(email: string, password: string) {
-    const res = await axios.post("http://localhost:6570/api/auth/login", {
+    const res = await axios.post("http://localhost:6570/api/user/login", {
         email: email,
         password: password
     })
@@ -21,4 +21,13 @@ export async function logoutProcess() {
 
 export async function registerProcess(data: any) {
 
+    const { name, email, password } = data
+
+    const res = await axios.post("http://localhost:6570/api/user/register", {
+        name: name,
+        email: email,
+        password: password
+    })
+
+    return res
 }
