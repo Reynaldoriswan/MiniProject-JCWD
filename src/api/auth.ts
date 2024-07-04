@@ -3,15 +3,19 @@ import { cookies } from 'next/headers'
 import axios from "axios"
 import { redirect } from 'next/navigation'
 
+const base_url_api = "http://localhost:5670"
+
 export async function loginProcess(email: string, password: string) {
-    const res = await axios.post("http://localhost:6570/api/user/login", {
+
+    const res = await axios.post(base_url_api + "/auth/login", {
         email: email,
         password: password
     })
 
-    cookies().set("authToken", res.data.token)
+    console.log(res)
 
-    return res
+    cookies().set("authToken", res.data.token)
+    redirect("/post")
 }
 
 export async function logoutProcess() {
@@ -21,13 +25,5 @@ export async function logoutProcess() {
 
 export async function registerProcess(data: any) {
 
-    const { name, email, password } = data
 
-    const res = await axios.post("http://localhost:6570/api/user/register", {
-        name: name,
-        email: email,
-        password: password
-    })
-
-    return res
 }

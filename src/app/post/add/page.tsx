@@ -15,9 +15,18 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
+import { createPost } from "@/api/post";
+
 export default function PostAdd() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+
+  const handleCreatePost = async () => {
+    const res = await createPost({
+      title: title,
+      body: body,
+    });
+  };
 
   return (
     <Container>
@@ -46,7 +55,9 @@ export default function PostAdd() {
               ></Textarea>
             </FormControl>
             <FormControl>
-              <Button color={"blue.500"}>Submit </Button>
+              <Button color={"blue.500"} onClick={() => handleCreatePost()}>
+                Submit{" "}
+              </Button>
             </FormControl>
           </CardBody>
         </Card>

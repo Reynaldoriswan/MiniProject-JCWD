@@ -1,9 +1,23 @@
 "use client";
 
-import { Button, Text } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { Button, Text, UnorderedList, ListItem } from "@chakra-ui/react";
 import { logoutProcess } from "@/api/auth";
+import { getAllPosts } from "@/api/post";
 
 export default function Post() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    handleGetPosts();
+  }, []);
+
+  const handleGetPosts = async () => {
+    const posts = await getAllPosts();
+
+    setPosts(posts.data);
+  };
+
   const handleLogout = () => {
     logoutProcess();
   };
@@ -13,7 +27,12 @@ export default function Post() {
       <Text as={"h1"}> Post </Text>
       <Button onClick={() => handleLogout()}> Logout </Button>
       <hr></hr>
-      <p> This is Post page </p>
+
+      <UnorderedList>
+        {posts?.data?.map((item: any, index: number) => (
+          <ListItem key={index}>{item.title}</ListItem>
+        ))}
+      </UnorderedList>
     </div>
   );
 }

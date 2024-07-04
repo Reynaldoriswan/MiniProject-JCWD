@@ -20,6 +20,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
+      console.log(email, "<>", password);
       const resLogin = await loginProcess(email, password);
 
       //localStorage.setItem("authToken", resLogin.data.token);
