@@ -1,0 +1,21 @@
+.about {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(4,minmax(0, 7vw));
+    row-gap: 20px;
+    column-gap: 40px;
+}
+
+.eventImg {
+    grid-column-start: 4;
+    grid-column-end: 6;
+    grid-row: 2;
+}
+
+.aboutSect{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row: 2;
+    height: 44vh;
+}
+

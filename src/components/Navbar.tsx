@@ -6,11 +6,11 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <Box bgColor={"blue.500"} h={"50px"} lineHeight={"50px"} color={"white"}>
+    <Box bgColor={"#359F85"} h={"60px"} lineHeight={"60px"} color={"white"}>
       <Center>
         <Flex>
-          <div style={{ marginRight: 50 }}>
-            <Link href={"/"}>Yudhistira.id</Link>
+          <div style={{ marginRight: 70 }}>
+            <Link href={"/"}>Event Management</Link>
           </div>
           <nav>
             <Link href={"/post"} className="mr-[20px]">
@@ -25,9 +25,9 @@ export default function Navbar() {
               {" "}
               Project{" "}
             </Link>
-            <Link href={"/about"} className="mr-[20px]">
+            <Link href={"/About"} className="mr-[20px]">
               {" "}
-              About{" "}
+              About{""}
             </Link>
           </nav>
         </Flex>

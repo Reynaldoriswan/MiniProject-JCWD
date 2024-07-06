@@ -26,6 +26,13 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+
+.hero-container img{
+  margin-top: 20px;
+  width: 100vh;
+  height: 50vh;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
