@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import styles from './about.module.css'
+import styles from './about.module.css';
+import FAQ from '@/components/FAQ';
 
 export default function About() {
     return (
@@ -38,7 +39,7 @@ export default function About() {
                         </div>  
                         
                         <div className='items-card p-3 bg-white border-gray-500'>
-                            <p>Sunset in California</p>
+                            <p>Sunset in Canada</p>
                             <p className='text-black text-sm mt-3 text-justify'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas architecto magnam ab amet 
                                 aut nostrum, veniam facere? Esse molestiae amet voluptates? Dolor exercitationem dolores quaerat consequuntur 
                                 et aliquid  eveniet!</p>
@@ -72,12 +73,20 @@ export default function About() {
                         </div>  
                     
                         <div className='items-card p-3 bg-white border-black'>
-                            <p>Sunset in California</p>
+                            <p>Sunset in Melbourne</p>
                             <p className='text-black text-sm mt-3 text-justify'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas architecto magnam ab amet 
                                 aut nostrum, veniam facere? Esse molestiae amet voluptates? Dolor exercitationem dolores quaerat consequuntur 
                                 et aliquid  eveniet!</p>
                         </div>
                 </div>
+            </div>
+
+            <h1 className='text-center font-bold mb-4 font-sans text-lg'>Most Asked Question</h1>
+            
+            <div className='w-full h-screen bg-gradient-to-r from -indigo-500 to-blue-600'>
+               <div className='p-4'>
+                <FAQ />
+            </div>
             </div>
        </>
     );
