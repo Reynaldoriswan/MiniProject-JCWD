@@ -23,7 +23,6 @@
 //         session = await jose.jwtVerify(authToken, new TextEncoder().encode("yourSecretKey"))
 //     }
 
-
 //     // 5. Redirect to /login if the user is not authenticated
 //     if (isProtectedRoute && !session?.payload?.email) {
 
@@ -47,17 +46,16 @@
 //     matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 // }
 
-"use server"
-import { NextRequest, NextResponse } from 'next/server'
+"use server";
+import { NextRequest, NextResponse } from "next/server";
 
 export default async function middleware(req: NextRequest) {
+  console.log("HELLO MIDDLEWARE POST");
 
-    console.log("HELLO MIDDLEWARE POST")
-
-    return NextResponse.next()
+  return NextResponse.next();
 }
 
 // Routes Middleware should not run on
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
-}
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+};

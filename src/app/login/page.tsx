@@ -11,6 +11,7 @@ import {
   Text,
   CardFooter,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 import { loginProcess } from "@/api/auth";
 
@@ -63,6 +64,14 @@ export default function Login() {
               <Button onClick={() => handleLogin()}> Login </Button>
             </CardFooter>
           </Card>
+          <Text mt={4}>
+            Belum punya akun?{" "}
+            <Link href="/register" passHref>
+              <Button variant="link" colorScheme="teal">
+                Register
+              </Button>
+            </Link>
+          </Text>
         </Grid>
       </Center>
     </div>
