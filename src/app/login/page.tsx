@@ -1,79 +1,66 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
+import { login } from "../../api/auth";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 import {
+  Box,
   Button,
-  Card,
-  CardBody,
-  Center,
-  Grid,
   FormControl,
+  FormLabel,
   Input,
-  Text,
-  CardFooter,
+  Stack,
 } from "@chakra-ui/react";
-import Link from "next/link";
 
-import { loginProcess } from "@/api/auth";
+const LoginPage = () => {
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const router = useRouter();
 
-export default function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleLogin = async () => {
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      console.log(email, "<>", password);
-      const resLogin = await loginProcess(email, password);
-
-      //localStorage.setItem("authToken", resLogin.data.token);
-      //cookies().set("authToken", resLogin.data.token);
-    } catch (err) {
-      alert(JSON.stringify(err));
+      const data = await login(formData);
+      document.cookie = `authToken=${data.token}; path=/`;
+      toast.success("Login berhasil");
+      router.push("/post");
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
   return (
-    <div>
-      <Text as={"h1"}> Login </Text>
-      <hr></hr>
-      <Center>
-        <Grid>
-          <Card>
-            <CardBody>
-              <FormControl marginBottom={5}>
-                <label> Email </label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></Input>
-              </FormControl>
-              <FormControl>
-                <label> Password </label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></Input>
-              </FormControl>
-            </CardBody>
-            <CardFooter>
-              <Button onClick={() => handleLogin()}> Login </Button>
-            </CardFooter>
-          </Card>
-          <Text mt={4}>
-            Belum punya akun?{" "}
-            <Link href="/register" passHref>
-              <Button variant="link" colorScheme="teal">
-                Register
-              </Button>
-            </Link>
-          </Text>
-        </Grid>
-      </Center>
-    </div>
+    <Box maxW="md" mx="auto" mt={8} p={4} borderWidth={1} borderRadius="md">
+      <form onSubmit={onSubmit}>
+        <Stack spacing={4}>
+          <FormControl id="email" isRequired>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={onChange}
+            />
+          </FormControl>
+          <FormControl id="password" isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={onChange}
+            />
+          </FormControl>
+          <Button type="submit" colorScheme="blue" width="full">
+            Login
+          </Button>
+        </Stack>
+      </form>
+    </Box>
   );
-}
+};
+
+export default LoginPage;
