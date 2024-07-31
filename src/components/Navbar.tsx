@@ -13,7 +13,7 @@ export default function Navbar() {
             <Link href={"/"}>Event Management</Link>
           </div>
           <nav>
-            <Link href={"/post"} className="mr-[20px]">
+            <Link href={"/About/Learn"} className="mr-[20px]">
               {" "}
               Blog{" "}
             </Link>
